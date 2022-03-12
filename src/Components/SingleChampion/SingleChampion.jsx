@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchChampion, fetchVersion } from "../../functions/fetch";
+import { fetchChampion } from "../../functions/fetch";
 import "./singlechampion.css";
 import { ucfirst } from "../../functions/fonts";
 
@@ -8,28 +8,28 @@ export const SingleChampion = () => {
   //get the champion id from the url
   const championId = useParams().id;
 
-  //state actual champion
-  const [champion, setChampion] = useState({});
+  //get the version from the url
+  const version = useParams().version;
 
-  //state version
-  const [version, setVersion] = useState("0");
+  //array of colors red blue purple and green in hex
+  const colors = ["#FF0000", "#0000FF", "#800080", "#008000"];
+
+  //state actual champion
+  const [champion, setChampion] = useState({
+    id: "",
+    title: "",
+    info: {},
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      //fetch the version
-      version === "0" && setVersion(await fetchVersion());
-
       //fetch the champion data
-      if (!champion.id) {
-        const actualChampion = await fetchChampion(championId, version);
-        setChampion(actualChampion.data[championId]);
-      }
+      const championData = await fetchChampion(championId, version);
+      championData && setChampion(championData.data[championId]);
     };
 
     fetchData();
-  }, [champion, version]);
-
-  console.log(champion);
+  }, []);
 
   return (
     <div className="single-champion-container">
@@ -45,12 +45,13 @@ export const SingleChampion = () => {
           <h2>{ucfirst(champion.title)}</h2>
 
           {/* loop inside object */}
-          {Object.keys(champion.info).map((key) => {
+          {Object.keys(champion.info).map((key, index) => {
             return (
               <SkillBar
                 size={10}
                 title={ucfirst(key)}
                 skills={champion.info[key]}
+                color={colors[index]}
               />
             );
           })}
@@ -61,7 +62,7 @@ export const SingleChampion = () => {
 };
 
 const SkillBar = (props) => {
-  const { title, size, skills } = props;
+  const { title, size, skills, color } = props;
 
   const divs = [];
 
@@ -74,7 +75,13 @@ const SkillBar = (props) => {
       <p>{title}</p>
       <div className="skillbar-container">
         {divs.map((div, index) => {
-          if (index < skills) return <div className="skillbar full"></div>;
+          if (index < skills)
+            return (
+              <div
+                style={{ backgroundColor: color }}
+                className="skillbar full"
+              ></div>
+            );
           return div;
         })}
       </div>

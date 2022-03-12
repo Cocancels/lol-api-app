@@ -7,27 +7,53 @@
   width: 100%;
   object-fit: cover;
   z-index: -1;
+  filter: brightness(0.4);
 }
 
 .skillbar-container {
-  width: 400px;
+  margin: auto;
   height: 25px;
   background-color: rgba(131, 131, 131, 0.445);
   display: flex;
+  justify-content: center;
+  transform: skewX(-20deg);
 }
 
 .skillbar {
   width: 25%;
   height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.541);
+  border: 1px solid rgba(255, 255, 255, 0.274);
 }
 
-.skillbar.full {
-  background-color: rgb(209, 46, 46);
+.fullskillbar {
+  width: 30%;
+  margin: auto;
 }
 
 .fullskillbar > p {
-  text-align: left;
+  margin-top: 40px;
+  margin-bottom: 10px;
   color: white;
   font-size: 1.5em;
+}
+
+.single-champion-container {
+  color: white;
+  text-align: center;
+}
+
+.champion-container {
+  margin-top: 200px;
+}
+
+.champion-container h1 {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 100px;
+}
+
+.champion-container h2 {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 30px;
 }

@@ -41,7 +41,7 @@ export const Champions = () => {
               <li key={champion.id}>
                 <p>{champion.name}</p>
                 <Link
-                  to={`/champions/${champion.id}`}
+                  to={`/champions/${champion.id}/${version}`}
                   className="champion-link"
                 >
                   <img

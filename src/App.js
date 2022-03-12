@@ -9,7 +9,7 @@ export const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Champions />} />
-        <Route path="/champions/:id" element={<SingleChampion />} />
+        <Route path="/champions/:id/:version" element={<SingleChampion />} />
       </Routes>
     </div>
   );
