@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
 }
 
 .App-logo {
@@ -26,6 +27,12 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* splash class that has a 200px height and width */
+.splash {
+  height: 200px;
+  width: auto;
 }
 
 @keyframes App-logo-spin {

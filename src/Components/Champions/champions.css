@@ -1,0 +1,8 @@
+.champions-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.champions-list > li {
+  margin-top: 30px;
+}
